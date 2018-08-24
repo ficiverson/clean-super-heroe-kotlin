@@ -27,11 +27,9 @@ class SuperHeroeListPresenter(
     private val superHeroeMapper = SuperHeroeMapper()
     private val invoker = UseCaseInvoker()
 
-    init {
-        superHeroesView.setPresenter(this)
-    }
 
-    override fun start() {
+    override fun onCreate() {
+        super.onCreate()
         val params = GetHeroeParams(page = 1)
         invoker.execute(getSuperHeroes, params, NetworkAndStorage, ::retrieveHeroes)
     }
