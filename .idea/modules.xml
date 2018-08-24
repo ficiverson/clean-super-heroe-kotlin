@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app-ui/app-ui.iml" filepath="$PROJECT_DIR$/app-ui/app-ui.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cleanSH.iml" filepath="$PROJECT_DIR$/cleanSH.iml" />
+      <module fileurl="file://$PROJECT_DIR$/clean-super-heroe-kotlin.iml" filepath="$PROJECT_DIR$/clean-super-heroe-kotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/data/data.iml" filepath="$PROJECT_DIR$/data/data.iml" />
       <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
       <module fileurl="file://$PROJECT_DIR$/presentation/presentation.iml" filepath="$PROJECT_DIR$/presentation/presentation.iml" />
