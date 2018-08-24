@@ -25,7 +25,7 @@ class UseCaseInvoker : Invoker {
     ) {
         launchAsync {
             try {
-                when(policy){
+                when (policy) {
                     LocalOnly, NetworkAndStorage -> onResult(asyncAwait { useCase.run(policy, params) })
                     NetworkOnly, NetworkAndStorage -> onResult(asyncAwait { useCase.run(policy, params) })
                 }
@@ -60,7 +60,7 @@ class UseCaseInvoker : Invoker {
         return async(block).await()
     }
 
-    //review paraller executions
+    //TODO review paraller executions
     fun <P, T : Any> executeParallel(
         useCases: List<UseCase<P, T>>,
         params: Params,

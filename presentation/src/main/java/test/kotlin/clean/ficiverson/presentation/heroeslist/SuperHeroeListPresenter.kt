@@ -26,17 +26,6 @@ class SuperHeroeListPresenter(private val superHeroesView: SuperHeroeListViewTra
 
     init {
         superHeroesView.setPresenter(this)
-
-//        1.sumaUno(2)
-//
-//        1 sumaUno 2
-//
-//        addText {
-//            this + "hi"
-//            this + " ho"
-//            addText { toUpperCase() }
-//        }
-
     }
 
     override fun start() {
@@ -54,8 +43,4 @@ class SuperHeroeListPresenter(private val superHeroesView: SuperHeroeListViewTra
             is Error -> superHeroesView.showErrorState()
         }
     }
-
-//    infix fun Int.sumaUno(x: Int): Int { return x}
-//
-//    fun addText(func: String.()->Unit->String.()) = String().apply(func)
 }
