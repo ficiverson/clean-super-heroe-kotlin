@@ -1,6 +1,7 @@
 package test.kotlin.clean.ficiverson.cleansh
 
 import android.os.Bundle
+import org.koin.android.ext.android.inject
 import test.kotlin.clean.ficiverson.presentation.heroeslist.SuperHeroeListPresenter
 import test.kotlin.clean.ficiverson.presentation.heroeslist.SuperHeroeListViewTranslator
 import test.kotlin.clean.ficiverson.presentation.model.SuperHeroeView
@@ -8,10 +9,7 @@ import kotlin.clean.ficiverson.cleansh.R
 
 class SuperHeroesActivity : BaseActivity<SuperHeroeListPresenter>(), SuperHeroeListViewTranslator {
 
-
-    override fun createPresenter(): SuperHeroeListPresenter = SuperHeroeListPresenter(
-        this
-    )
+    override val presenter: SuperHeroeListPresenter by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
