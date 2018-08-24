@@ -27,8 +27,11 @@ class SuperHeroeListPresenter(
     private val superHeroeMapper = SuperHeroeMapper()
     private val invoker = UseCaseInvoker()
 
+    init {
+        superHeroesView.setPresenter(this)
+    }
 
-    override fun onStart() {
+    override fun start() {
         val params = GetHeroeParams(page = 1)
         invoker.execute(getSuperHeroes, params, NetworkAndStorage, ::retrieveHeroes)
     }
@@ -44,6 +47,7 @@ class SuperHeroeListPresenter(
             is Error -> view()?.showErrorState()
         }
     }
+
 }
 
 interface SuperHeroeListViewTranslator {

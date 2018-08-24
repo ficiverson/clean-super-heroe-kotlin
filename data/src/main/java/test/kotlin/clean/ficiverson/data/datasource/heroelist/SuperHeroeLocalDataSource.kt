@@ -9,6 +9,6 @@ import test.kotlin.clean.ficiverson.executor.Result
  */
 interface SuperHeroeLocalDataSource {
 
-    fun getAll(): List<SuperHeroeEntity>
+    fun getAll(): List<SuperHeroeEntity>?
 
 }
