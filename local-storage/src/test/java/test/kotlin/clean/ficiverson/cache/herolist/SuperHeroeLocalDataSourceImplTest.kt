@@ -1,4 +1,4 @@
-package test.kotlin.clean.ficiverson.cleansh.herolist
+package test.kotlin.clean.ficiverson.cache.herolist
 
 import org.assertj.core.api.Assertions
 import org.junit.Test

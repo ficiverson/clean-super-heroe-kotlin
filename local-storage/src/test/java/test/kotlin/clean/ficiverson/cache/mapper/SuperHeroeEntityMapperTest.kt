@@ -1,9 +1,9 @@
-package test.kotlin.clean.ficiverson.cleansh.mapper
+package test.kotlin.clean.ficiverson.cache.mapper
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import test.kotlin.clean.ficiverson.cleansh.mock.instrumentation.SuperHeroeIntrument.Companion.givenASuperHeroeEntity
-import test.kotlin.clean.ficiverson.cleansh.mock.instrumentation.SuperHeroeIntrument.Companion.givenASuperHeroeLocal
+import test.kotlin.clean.ficiverson.cache.mock.instrumentation.SuperHeroeIntrument.Companion.givenASuperHeroeEntity
+import test.kotlin.clean.ficiverson.cache.mock.instrumentation.SuperHeroeIntrument.Companion.givenASuperHeroeLocal
 import test.kotlin.clean.ficiverson.data.model.SuperHeroeEntity
 import test.kotlin.clean.ficiverson.cache.mapper.SuperHeroeEntityMapper
 
