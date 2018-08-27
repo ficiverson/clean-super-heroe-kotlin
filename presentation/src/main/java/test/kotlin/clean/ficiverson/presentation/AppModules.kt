@@ -2,8 +2,10 @@ package test.kotlin.clean.ficiverson.presentation
 
 import org.buffer.android.boilerplate.domain.model.SuperHeroe
 import org.buffer.android.boilerplate.domain.repository.SuperHeroesRepositoryContract
-import org.koin.dsl.module.Module
-import org.koin.dsl.module.applicationContext
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.provider
 import test.kotlin.clean.ficiverson.executor.*
 import test.kotlin.clean.ficiverson.interactor.heroeslist.GetSuperHeroesUseCase
 import test.kotlin.clean.ficiverson.presentation.heroeslist.SuperHeroeListPresenter
@@ -13,13 +15,13 @@ import test.kotlin.clean.ficiverson.presentation.model.SuperHeroeView
 
 class AppModules {
 
-    val module: Module = applicationContext {
-        factory { viewTranslator as SuperHeroeListViewTranslator}
-        factory { repository as SuperHeroesRepositoryContract }
-        factory { GetSuperHeroesUseCase(get()) }
-        factory { UseCaseInvoker() }
-        factory { SuperHeroeMapper() }
-        factory { SuperHeroeListPresenter(get(), get(), get(), get()) }
+    val module = Kodein {
+        bind<SuperHeroeListViewTranslator>() with provider { viewTranslator }
+        bind<SuperHeroesRepositoryContract>() with provider { repository }
+        bind<GetSuperHeroesUseCase>() with provider { GetSuperHeroesUseCase(instance()) }
+        bind<UseCaseInvoker>() with provider { UseCaseInvoker() }
+        bind<SuperHeroeMapper>() with provider { SuperHeroeMapper() }
+        bind<SuperHeroeListPresenter>() with provider { SuperHeroeListPresenter(instance(), instance(), instance(), instance()) }
 //        bean { retrofit(get()) }
 //        bean { okHttpClient() }
     }
