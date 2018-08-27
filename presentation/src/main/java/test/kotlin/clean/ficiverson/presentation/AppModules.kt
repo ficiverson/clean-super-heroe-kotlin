@@ -1,7 +1,7 @@
 package test.kotlin.clean.ficiverson.presentation
 
 import org.buffer.android.boilerplate.domain.model.SuperHeroe
-import org.buffer.android.boilerplate.domain.repository.SuperHeroesRepositoryContract
+import test.kotlin.clean.ficiverson.repository.SuperHeroesRepositoryContract
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.applicationContext
 import test.kotlin.clean.ficiverson.executor.*

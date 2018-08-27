@@ -1,7 +1,7 @@
 package test.kotlin.clean.ficiverson.data.repository.heroeslist
 
 import org.buffer.android.boilerplate.domain.model.SuperHeroe
-import org.buffer.android.boilerplate.domain.repository.SuperHeroesRepositoryContract
+import test.kotlin.clean.ficiverson.repository.SuperHeroesRepositoryContract
 import test.kotlin.clean.ficiverson.data.datasource.heroelist.SuperHeroeLocalDataSource
 import test.kotlin.clean.ficiverson.data.datasource.heroelist.SuperHeroeRemoteDataSource
 import test.kotlin.clean.ficiverson.data.mapper.SuperHeroeMapper
@@ -15,32 +15,14 @@ class SuperHeroesRepository(
     private val networkDataSource: SuperHeroeRemoteDataSource
 ) : SuperHeroesRepositoryContract {
 
-    val mapper: SuperHeroeMapper = SuperHeroeMapper()
+    private val mapper: SuperHeroeMapper = SuperHeroeMapper()
 
     override fun getSuperHeroes(params: Params, policy: CachePolicy): Result<List<SuperHeroe>> {
         return when (policy) {
-            NetworkOnly -> {
-                Success(data = networkDataSource.getAll()?.let {
-                    it.map { mapper.mapFromEntity(it) }
-                }) as Result<List<SuperHeroe>>
-            }
-
-            LocalOnly -> {
-                Success(data = localDataSource.getAll()?.let {
-                    it.map { mapper.mapFromEntity(it) }
-                }) as Result<List<SuperHeroe>>
-            }
-
-            NetworkAndStorage -> {
-                Success(data = networkDataSource.getAll()?.let {
-                    it.map { mapper.mapFromEntity(it) }
-                }) as Result<List<SuperHeroe>>
-            }
-
+            NetworkOnly -> Success(networkDataSource.getAll()?.map { mapper.mapFromEntity(it) }.orEmpty())
+            LocalOnly -> Success(localDataSource.getAll()?.map { mapper.mapFromEntity(it) }.orEmpty())
+            NetworkAndStorage -> Success(networkDataSource.getAll()?.map { mapper.mapFromEntity(it) }.orEmpty())
             NoCache -> NoData()
         }
-        return NoData()
-
     }
-
 }

@@ -1,4 +1,4 @@
-package org.buffer.android.boilerplate.domain.repository
+package test.kotlin.clean.ficiverson.repository
 
 import org.buffer.android.boilerplate.domain.model.SuperHeroe
 import test.kotlin.clean.ficiverson.executor.CachePolicy
