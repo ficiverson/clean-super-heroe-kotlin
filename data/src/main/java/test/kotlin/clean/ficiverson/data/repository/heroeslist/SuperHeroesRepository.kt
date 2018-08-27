@@ -18,27 +18,27 @@ class SuperHeroesRepository(
     val mapper: SuperHeroeMapper = SuperHeroeMapper()
 
     override fun getSuperHeroes(params: Params, policy: CachePolicy): Result<List<SuperHeroe>> {
-        return when (policy) {
-            NetworkOnly -> {
-                Success(data = networkDataSource.getAll()?.let {
-                    it.map { mapper.mapFromEntity(it) }
-                }) as Result<List<SuperHeroe>>
-            }
-
-            LocalOnly -> {
-                Success(data = localDataSource.getAll()?.let {
-                    it.map { mapper.mapFromEntity(it) }
-                }) as Result<List<SuperHeroe>>
-            }
-
-            NetworkAndStorage -> {
-                Success(data = networkDataSource.getAll()?.let {
-                    it.map { mapper.mapFromEntity(it) }
-                }) as Result<List<SuperHeroe>>
-            }
-
-            NoCache -> NoData()
-        }
+//        return when (policy) {
+//            NetworkOnly -> {
+//                Success(data = networkDataSource.getAll()?.let {
+//                    it.map { mapper.mapFromEntity(it) }
+//                }) as Result<List<SuperHeroe>>
+//            }
+//
+//            LocalOnly -> {
+//                Success(data = localDataSource.getAll()?.let {
+//                    it.map { mapper.mapFromEntity(it) }
+//                }) as Result<List<SuperHeroe>>
+//            }
+//
+//            NetworkAndStorage -> {
+//                Success(data = networkDataSource.getAll()?.let {
+//                    it.map { mapper.mapFromEntity(it) }
+//                }) as Result<List<SuperHeroe>>
+//            }
+//
+//            NoCache -> NoData()
+//        }
         return NoData()
 
     }

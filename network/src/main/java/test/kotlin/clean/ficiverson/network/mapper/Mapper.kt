@@ -1,4 +1,4 @@
-package kotlin.clean.ficiverson.network.mapper
+package test.kotlin.clean.ficiverson.network.mapper
 
 /**
  * Created by f.souto.gonzalez on 24/08/2018.

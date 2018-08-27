@@ -1,6 +1,7 @@
-package test.kotlin.clean.ficiverson.cleansh
+package test.kotlin.clean.ficiverson.cleansh.hereoelist
 
 import android.os.Bundle
+import test.kotlin.clean.ficiverson.cleansh.BaseActivity
 import test.kotlin.clean.ficiverson.presentation.heroeslist.SuperHeroeListPresenter
 import test.kotlin.clean.ficiverson.presentation.heroeslist.SuperHeroeListViewTranslator
 import test.kotlin.clean.ficiverson.presentation.model.SuperHeroeView
