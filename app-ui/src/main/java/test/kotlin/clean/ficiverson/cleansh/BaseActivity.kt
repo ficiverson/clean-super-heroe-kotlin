@@ -8,19 +8,12 @@ import test.kotlin.clean.ficiverson.presentation.IBasePresenter
 /*
 * Base activity that supports MVP.
 */
-abstract class BaseActivity<out T : IBasePresenter> : AppCompatActivity() {
+abstract class BaseActivity<T : IBasePresenter> : AppCompatActivity() {
 
     /**
      * The current presenter.
      */
-    private lateinit var presenter: T
-
-    /**
-     * Method that must provide a presenter item.
-
-     * @return The presenter provided.
-     */
-    protected abstract fun createPresenter(): T
+    abstract val presenter: T
 
     /**
      * Provides the presenter.
@@ -31,7 +24,6 @@ abstract class BaseActivity<out T : IBasePresenter> : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = createPresenter()
         presenter.onCreate()
     }
 
