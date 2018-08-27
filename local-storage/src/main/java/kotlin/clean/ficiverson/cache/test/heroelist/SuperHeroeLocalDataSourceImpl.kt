@@ -1,4 +1,4 @@
-package kotlin.clean.ficiverson.cache.heroelist
+package test.kotlin.clean.ficiverson.cache.heroelist
 
 import test.kotlin.clean.ficiverson.data.datasource.heroelist.SuperHeroeLocalDataSource
 import test.kotlin.clean.ficiverson.data.model.SuperHeroeEntity
@@ -9,7 +9,7 @@ import test.kotlin.clean.ficiverson.data.model.SuperHeroeEntity
 class SuperHeroeLocalDataSourceImpl : SuperHeroeLocalDataSource {
 
     override fun getAll(): List<SuperHeroeEntity>? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return mutableListOf()
     }
 
 }

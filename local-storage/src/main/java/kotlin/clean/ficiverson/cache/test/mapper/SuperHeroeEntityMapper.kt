@@ -1,7 +1,7 @@
-package kotlin.clean.ficiverson.cache.mapper
+package test.kotlin.clean.ficiverson.cache.mapper
 
 import test.kotlin.clean.ficiverson.data.model.SuperHeroeEntity
-import kotlin.clean.ficiverson.cache.model.SuperHeroeDatabase
+import test.kotlin.clean.ficiverson.cache.model.SuperHeroeDatabase
 
 /**
  * Created by f.souto.gonzalez on 24/08/2018.
