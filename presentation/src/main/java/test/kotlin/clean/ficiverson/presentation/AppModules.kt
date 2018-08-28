@@ -1,7 +1,6 @@
 package test.kotlin.clean.ficiverson.presentation
 
 import org.buffer.android.boilerplate.domain.model.SuperHeroe
-import test.kotlin.clean.ficiverson.repository.SuperHeroesRepositoryContract
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.applicationContext
 import test.kotlin.clean.ficiverson.executor.*
@@ -10,11 +9,12 @@ import test.kotlin.clean.ficiverson.presentation.heroeslist.SuperHeroeListPresen
 import test.kotlin.clean.ficiverson.presentation.heroeslist.SuperHeroeListViewTranslator
 import test.kotlin.clean.ficiverson.presentation.mapper.SuperHeroeMapper
 import test.kotlin.clean.ficiverson.presentation.model.SuperHeroeView
+import test.kotlin.clean.ficiverson.repository.SuperHeroesRepositoryContract
 
 class AppModules {
 
     val module: Module = applicationContext {
-        factory { viewTranslator as SuperHeroeListViewTranslator}
+        factory { viewTranslator as SuperHeroeListViewTranslator }
         factory { repository as SuperHeroesRepositoryContract }
         factory { GetSuperHeroesUseCase(get()) }
         factory { UseCaseInvoker() }
@@ -31,7 +31,7 @@ class AppModules {
     }
 
     private val repository = object : SuperHeroesRepositoryContract {
-        override fun getSuperHeroes(params: Params, policy: CachePolicy): Result<List<SuperHeroe>> =
+        override fun getSuperHeroes(params: GetHeroeParams, policy: CachePolicy): Result<List<SuperHeroe>> =
             Success(emptyList())
     }
 

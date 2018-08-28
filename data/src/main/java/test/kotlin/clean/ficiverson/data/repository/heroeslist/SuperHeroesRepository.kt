@@ -17,7 +17,7 @@ class SuperHeroesRepository(
 
     private val mapper: SuperHeroeMapper = SuperHeroeMapper()
 
-    override fun getSuperHeroes(params: Params, policy: CachePolicy): Result<List<SuperHeroe>> {
+    override fun getSuperHeroes(params: GetHeroeParams, policy: CachePolicy): Result<List<SuperHeroe>> {
         return when (policy) {
             NetworkOnly -> Success(networkDataSource.getAll()?.map { mapper.mapFromEntity(it) }.orEmpty())
             LocalOnly -> Success(localDataSource.getAll()?.map { mapper.mapFromEntity(it) }.orEmpty())
