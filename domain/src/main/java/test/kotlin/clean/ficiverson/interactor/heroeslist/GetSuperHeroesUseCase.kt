@@ -12,6 +12,6 @@ class GetSuperHeroesUseCase(
     private val superHeroesRepositoryContract: SuperHeroesRepositoryContract
 ) : UseCase<GetHeroeParams, List<SuperHeroe>> {
 
-    override suspend fun run(policy: CachePolicy, params: Params) =
+    override suspend fun run(policy: CachePolicy, params: GetHeroeParams) =
         superHeroesRepositoryContract.getSuperHeroes(params, policy)
 }

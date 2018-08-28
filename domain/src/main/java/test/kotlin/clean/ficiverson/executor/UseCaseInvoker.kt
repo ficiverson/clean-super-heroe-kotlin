@@ -19,7 +19,7 @@ class UseCaseInvoker : Invoker {
 
     override fun <P, T> execute(
         useCase: UseCase<P, T>,
-        params: Params,
+        params: P,
         policy: CachePolicy,
         onResult: (Result<T>) -> Unit
     ) {
@@ -63,7 +63,7 @@ class UseCaseInvoker : Invoker {
     //TODO review paraller executions
     fun <P, T : Any> executeParallel(
         useCases: List<UseCase<P, T>>,
-        params: Params,
+        params: P,
         policy: CachePolicy,
         onResult: (Result<T>) -> Unit
     ) {
