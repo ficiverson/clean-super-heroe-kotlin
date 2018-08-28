@@ -6,6 +6,7 @@ import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
+import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.schibsted.spain.barista.interaction.BaristaClickInteractions.clickOn
 import com.schibsted.spain.barista.interaction.BaristaEditTextInteractions.writeTo
 import org.junit.Rule
@@ -49,6 +50,6 @@ class SuperHeroeRobot {
 
 class SuperHeroeRobotResult {
     fun isSuccess() {
-        onView(withId(R.id.superHeroesTitle)).check(matches(isDisplayed()))
+        assertDisplayed(R.id.superHeroesTitle)
     }
 }
