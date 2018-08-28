@@ -26,7 +26,7 @@ class NetworkModules {
 
     private fun okHttpClient() =
         OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor { message -> System.console().printf("Interceptor", message) }.apply { level = HttpLoggingInterceptor.Level.BODY })
+            .addInterceptor(HttpLoggingInterceptor { message -> System.out.println("Interceptor $message") }.apply { level = HttpLoggingInterceptor.Level.BODY })
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .build()

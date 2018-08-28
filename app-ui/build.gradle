@@ -24,8 +24,9 @@ dependencies {
     implementation project(':presentation')
 
     // Implement this modules for dependency injection purposes
-    compile project(':local-storage')
-    compile project(':network')
+    implementation project(':domain')
+    api project(':local-storage')
+    api project(':network')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
