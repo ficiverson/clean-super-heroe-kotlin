@@ -6,9 +6,11 @@ targetCompatibility = 1.7
 
 dependencies {
 
-    implementation project(':data')
+    compile project(':data')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.koin:koin-android:$koin_version"
+
     implementation "com.google.code.gson:gson:${gson_version}"
     implementation "com.squareup.okhttp3:okhttp:${okhttp_version}"
     implementation "com.squareup.okhttp3:logging-interceptor:${okhttp_version}"

@@ -1,4 +1,4 @@
-package test.kotlin.clean.ficiverson.presentation.heroeslist
+package test.kotlin.clean.ficiverson.presentation.heroelist
 
 import org.buffer.android.boilerplate.domain.model.SuperHeroe
 import test.kotlin.clean.ficiverson.executor.*
@@ -11,12 +11,12 @@ import java.lang.ref.WeakReference
 /**
  * Created by f.souto.gonzalez on 17/08/2018.
  */
-class SuperHeroeListPresenter(
-    view: SuperHeroeListViewTranslator,
+class SuperHeroesPresenter(
+    view: SuperHeroesViewTranslator,
     private val getSuperHeroes: GetSuperHeroesUseCase,
     private val invoker: UseCaseInvoker = UseCaseInvoker(),
     private val superHeroeMapper: SuperHeroeMapper = SuperHeroeMapper()
-) : BasePresenter<SuperHeroeListViewTranslator>(WeakReference(view)) {
+) : BasePresenter<SuperHeroesViewTranslator>(WeakReference(view)) {
 
     override fun onCreate() {
         super.onCreate()
@@ -37,7 +37,7 @@ class SuperHeroeListPresenter(
     }
 }
 
-interface SuperHeroeListViewTranslator {
+interface SuperHeroesViewTranslator {
     fun showData(data: List<SuperHeroeView>)
     fun showErrorState()
 }

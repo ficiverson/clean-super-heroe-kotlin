@@ -15,13 +15,6 @@ abstract class BaseActivity<T : IBasePresenter> : AppCompatActivity() {
      */
     abstract val presenter: T
 
-    /**
-     * Provides the presenter.
-
-     * @return The presenter provided.
-     */
-    fun presenter(): T = presenter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter.onCreate()

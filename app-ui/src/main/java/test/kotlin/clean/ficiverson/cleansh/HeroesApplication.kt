@@ -2,14 +2,27 @@ package test.kotlin.clean.ficiverson.cleansh
 
 import android.app.Application
 import org.koin.android.ext.android.startKoin
-import org.koin.standalone.KoinComponent
-import test.kotlin.clean.ficiverson.presentation.AppModules
+import test.kotlin.clean.ficiverson.cleansh.injection.AppModules
+import test.kotlin.clean.ficiverson.network.injection.NetworkModules
 
 
-class HeroesApplication : Application(), KoinComponent {
+class HeroesApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        startKoin(this, listOf(AppModules().module))
+        initKoinModules()
+    }
+
+    private fun initKoinModules() {
+        val appModules = AppModules()
+        val networkModules = NetworkModules()
+        startKoin(
+            this,
+            listOf(
+                appModules.mainModule,
+                appModules.superHeroesModule,
+                networkModules.module
+            )
+        )
     }
 }
