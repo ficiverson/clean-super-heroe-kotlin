@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "kotlin.clean.ficiverson.cleansh"
+        applicationId "test.kotlin.clean.ficiverson.cleansh"
         minSdkVersion 22
         targetSdkVersion 27
         versionCode 1
