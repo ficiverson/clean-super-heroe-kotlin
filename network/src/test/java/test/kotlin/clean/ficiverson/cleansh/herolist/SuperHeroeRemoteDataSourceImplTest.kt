@@ -6,14 +6,13 @@ import org.junit.Before
 import org.junit.Test
 import org.koin.standalone.StandAloneContext.closeKoin
 import org.koin.standalone.StandAloneContext.startKoin
-import org.koin.test.KoinTest
 import test.kotlin.clean.ficiverson.network.heroelist.SuperHeroeRemoteDataSourceImpl
 import test.kotlin.clean.ficiverson.network.injection.NetworkModules
 
 /**
  * Created by f.souto.gonzalez on 27/08/2018.
  */
-class SuperHeroeRemoteDataSourceImplTest : KoinTest {
+class SuperHeroeRemoteDataSourceImplTest {
 
     @Before
     fun before() {
