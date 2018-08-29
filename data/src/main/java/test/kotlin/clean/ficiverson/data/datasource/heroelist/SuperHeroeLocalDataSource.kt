@@ -7,6 +7,7 @@ import test.kotlin.clean.ficiverson.data.model.SuperHeroeEntity
  */
 interface SuperHeroeLocalDataSource {
 
-    fun getAll(): List<SuperHeroeEntity>?
+    fun setAll(superHeroes: List<SuperHeroeEntity>)
 
+    fun getAll(): List<SuperHeroeEntity>?
 }
