@@ -15,7 +15,8 @@ class HeroesApplication : Application() {
 
     private fun initKoinModules() {
         val appModules = AppModules()
-        val networkModules = NetworkModules()
+        val networkModules = NetworkModules("https://api.myjson.com/")
+
         startKoin(
             this,
             listOf(

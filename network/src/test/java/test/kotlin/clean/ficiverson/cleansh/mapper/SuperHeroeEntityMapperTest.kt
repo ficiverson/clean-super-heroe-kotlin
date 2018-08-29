@@ -21,7 +21,7 @@ class SuperHeroeEntityMapperTest {
     @Test
     fun `that can map a network response to entity with same name`() {
         val mappedInstance = SuperHeroeEntityMapper().mapFromRemote(givenASuperHeroeRemote())
-        assertThat(mappedInstance).isNotNull();
+        assertThat(mappedInstance).isNotNull()
         assertThat(givenASuperHeroeEntity().name).isEqualTo(mappedInstance.name)
     }
 }

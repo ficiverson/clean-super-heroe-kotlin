@@ -2,6 +2,8 @@
 <manifest package="kotlin.clean.ficiverson.cleansh"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="test.kotlin.clean.ficiverson.cleansh.HeroesApplication"
         android:allowBackup="true"
