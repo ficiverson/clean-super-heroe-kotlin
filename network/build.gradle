@@ -9,7 +9,9 @@ dependencies {
     compile project(':data')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
     implementation "org.koin:koin-android:$koin_version"
+    testImplementation "org.koin:koin-test:$koin_version"
 
     implementation "com.google.code.gson:gson:${gson_version}"
     implementation "com.squareup.okhttp3:okhttp:${okhttp_version}"
