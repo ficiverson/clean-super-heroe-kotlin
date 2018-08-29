@@ -25,8 +25,8 @@ class SuperHeroesPresenter(
     }
 
     override fun onStop() {
-        super.onStop()
         invoker.cancelAllAsync()
+        super.onStop()
     }
 
     private fun retrieveHeroes(result: Result<List<SuperHeroe>>) {

@@ -20,7 +20,7 @@ class InvokerTest {
                 Success(emptyList())
         })
         runBlocking {
-            assertThat(useCase.run(LocalOnly, GetHeroeParams(page = 1))).isNotNull()
+            assertThat(useCase.run(LocalOnly, GetHeroeParams(1))).isNotNull()
         }
     }
 

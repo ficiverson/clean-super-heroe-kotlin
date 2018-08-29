@@ -20,23 +20,23 @@ abstract class BasePresenter<out T>
      */
     fun view(): T? = view.get()
 
-    override fun onCreate() = Unit
+    override fun onCreate() {}
 
-    override fun onReady() = Unit
+    override fun onReady() {}
 
-    override fun onStart() = Unit
+    override fun onStart() {}
 
-    override fun onResume() = Unit
+    override fun onResume() {}
 
-    override fun onPause() = Unit
+    override fun onPause() {}
 
-    override fun onStop() = Unit
+    override fun onStop() {}
 
-    override fun onDestroy() = Unit
+    override fun onDestroy() {}
 
-    override fun onRestoreInstanceState() = Unit
+    override fun onRestoreInstanceState() {}
 
-    override fun onSaveInstanceState() = Unit
+    override fun onSaveInstanceState() {}
 
-    override fun onActivityResult() = Unit
+    override fun onActivityResult() {}
 }
