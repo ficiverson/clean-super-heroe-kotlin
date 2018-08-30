@@ -16,8 +16,7 @@ class SuperHeroeActivityTest {
 
     @Test
     fun thatCanFetchSuperHeroesFromNetwork() {
-        BaristaVisibilityAssertions.assertDisplayed(R.id.superHeroesTitle)
-        BaristaVisibilityAssertions.assertContains(R.id.superHeroesTitle, "size")
+        BaristaVisibilityAssertions.assertDisplayed(R.id.superHeroesRecyclerView)
     }
 }
 

@@ -8,9 +8,9 @@ import kotlin.coroutines.experimental.coroutineContext
 /**
  * Created by f.souto.gonzalez on 20/08/2018.
  */
-class UseCaseInvoker : Invoker {
+open class UseCaseInvoker : Invoker {
 
-    private val asyncJobs: MutableList<Job> = mutableListOf()
+    internal val asyncJobs: MutableList<Job> = mutableListOf()
 
     override fun isPendingTask(): Boolean = asyncJobs.size != 0
 
@@ -43,6 +43,7 @@ class UseCaseInvoker : Invoker {
                 asyncJobs[i].cancel()
             }
         }
+        asyncJobs.clear()
     }
 
     private fun launchAsync(block: suspend CoroutineScope.() -> Unit) {
