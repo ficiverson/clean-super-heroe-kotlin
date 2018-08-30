@@ -1,2 +1,1 @@
-<manifest package="kotlin.clean.ficiverson.cache"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+<manifest package="kotlin.clean.ficiverson.cache" />

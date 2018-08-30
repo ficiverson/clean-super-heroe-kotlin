@@ -3,13 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.compileSdk
 
     defaultConfig {
-        minSdkVersion 22
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.minSdk
+        targetSdkVersion rootProject.targetSdk
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
     }
 
     buildTypes {
@@ -23,7 +23,6 @@ android {
             }
         }
     }
-
 }
 
 dependencies {
