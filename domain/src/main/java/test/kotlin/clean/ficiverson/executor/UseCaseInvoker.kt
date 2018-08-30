@@ -23,8 +23,12 @@ class UseCaseInvoker : Invoker {
         launchAsync {
             try {
                 when (policy) {
-                    LocalOnly, NetworkAndStorage -> onResult(asyncAwait { useCase.run(policy, params) })
-                    NetworkOnly, NetworkAndStorage -> onResult(asyncAwait { useCase.run(policy, params) })
+                    LocalOnly -> onResult(asyncAwait { useCase.run(LocalOnly, params) })
+                    NetworkOnly -> onResult(asyncAwait { useCase.run(NetworkOnly, params) })
+                    NetworkAndStorage -> {
+                        onResult(asyncAwait { useCase.run(LocalOnly, params) })
+                        onResult(asyncAwait { useCase.run(NetworkOnly, params) })
+                    }
                 }
             } catch (e: Exception) {
                 onResult(Error())
