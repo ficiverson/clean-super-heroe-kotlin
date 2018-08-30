@@ -32,7 +32,7 @@ class SuperHeroesPresenter(
     private fun retrieveHeroes(result: Result<List<SuperHeroe>>) {
         when (result) {
             is Success -> view()?.showData(result.data.map { superHeroeMapper.mapToView(it) })
-            is Error -> view()?.showErrorState()
+            is Error, is NoInternetError -> view()?.showErrorState()
         }
     }
 }
