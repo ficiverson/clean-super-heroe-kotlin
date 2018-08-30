@@ -6,17 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_super_heroe.view.*
-import test.kotlin.clean.ficiverson.model.SuperHeroe
+import test.kotlin.clean.ficiverson.presentation.model.SuperHeroeView
 import kotlin.clean.ficiverson.cleansh.R
 
 class SuperHeroesAdapter(
     private val context: Context,
-    private val superHeroes: List<SuperHeroe>,
-    private val listener: (SuperHeroe) -> Unit
+    private val listener: (SuperHeroeView) -> Unit
 ) : RecyclerView.Adapter<SuperHeroesAdapter.SuperHeroesViewHolder>() {
+
+    private val superHeroes = mutableListOf<SuperHeroeView>()
 
     init {
         setHasStableIds(true)
+    }
+
+    fun setSuperHeroes(superHeroes: List<SuperHeroeView>) {
+        this.superHeroes.run {
+            clear()
+            addAll(superHeroes)
+        }
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperHeroesViewHolder =
@@ -35,7 +44,7 @@ class SuperHeroesAdapter(
     }
 
     class SuperHeroesViewHolder(private val item: View) : RecyclerView.ViewHolder(item) {
-        fun bind(superHeroe: SuperHeroe) {
+        fun bind(superHeroe: SuperHeroeView) {
             item.itemSuperHeroeName.text = superHeroe.name
         }
     }
