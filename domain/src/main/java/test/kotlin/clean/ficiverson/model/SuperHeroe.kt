@@ -1,4 +1,4 @@
-package org.buffer.android.boilerplate.domain.model
+package test.kotlin.clean.ficiverson.model
 
 /**
  * Representation for a [SuperHeroe] fetched from an external layer data source
