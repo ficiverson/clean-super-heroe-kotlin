@@ -2,7 +2,7 @@ package test.kotlin.clean.ficiverson.cleansh.heroelist;
 
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
-import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions
+import com.schibsted.spain.barista.assertion.BaristaRecyclerViewAssertions
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,7 +16,7 @@ class SuperHeroeActivityTest {
 
     @Test
     fun thatCanFetchSuperHeroesFromNetwork() {
-        BaristaVisibilityAssertions.assertDisplayed(R.id.superHeroesRecyclerView)
+        BaristaRecyclerViewAssertions.assertRecyclerViewItemCount(R.id.superHeroesRecyclerView, 6)
     }
 }
 
