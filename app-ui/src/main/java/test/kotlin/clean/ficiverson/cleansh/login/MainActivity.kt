@@ -1,7 +1,8 @@
-package test.kotlin.clean.ficiverson.cleansh
+package test.kotlin.clean.ficiverson.cleansh.login
 
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
+import test.kotlin.clean.ficiverson.cleansh.BaseActivity
 import test.kotlin.clean.ficiverson.cleansh.heroelist.SuperHeroesActivity
 import test.kotlin.clean.ficiverson.cleansh.injection.injectActivity
 import test.kotlin.clean.ficiverson.presentation.MainPresenter

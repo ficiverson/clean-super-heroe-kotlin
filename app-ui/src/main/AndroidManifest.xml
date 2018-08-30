@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="test.kotlin.clean.ficiverson.cleansh.MainActivity">
+        <activity android:name="test.kotlin.clean.ficiverson.cleansh.login.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

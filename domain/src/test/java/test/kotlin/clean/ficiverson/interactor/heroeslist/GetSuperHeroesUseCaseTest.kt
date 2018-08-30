@@ -14,7 +14,7 @@ import test.kotlin.clean.ficiverson.repository.SuperHeroesRepositoryContract
 class InvokerTest {
 
     @Test
-    fun `that can create a use case invoker`() {
+    fun `that can invoke a use case`() {
         val useCase = GetSuperHeroesUseCase(object : SuperHeroesRepositoryContract {
             override fun getSuperHeroes(params: GetHeroeParams, policy: CachePolicy): Result<List<SuperHeroe>> =
                 Success(emptyList())

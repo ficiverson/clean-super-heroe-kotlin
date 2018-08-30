@@ -3,6 +3,7 @@ package test.kotlin.clean.ficiverson.cleansh.heroelist
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_super_heroes.*
 import test.kotlin.clean.ficiverson.cleansh.BaseActivity
 import test.kotlin.clean.ficiverson.cleansh.injection.injectActivity
 import test.kotlin.clean.ficiverson.presentation.heroelist.SuperHeroesPresenter
@@ -26,8 +27,10 @@ class SuperHeroesActivity : BaseActivity<SuperHeroesPresenter>(), SuperHeroesVie
     }
 
     override fun showData(data: List<SuperHeroeView>) {
+        superHeroesTitle.text = "The size is: ${data.size}"
     }
 
     override fun showErrorState() {
+        superHeroesTitle.text = "Error"
     }
 }
