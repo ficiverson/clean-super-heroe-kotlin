@@ -16,6 +16,7 @@ class SuperHeroeActivityTest {
 
     @Test
     fun thatCanFetchSuperHeroesFromNetwork() {
+        // TODO: change this
         BaristaRecyclerViewAssertions.assertRecyclerViewItemCount(R.id.superHeroesRecyclerView, 6)
     }
 }
