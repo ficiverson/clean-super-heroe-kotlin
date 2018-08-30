@@ -1,6 +1,6 @@
 package test.kotlin.clean.ficiverson.presentation.mapper
 
-import org.buffer.android.boilerplate.domain.model.SuperHeroe
+import test.kotlin.clean.ficiverson.model.SuperHeroe
 import test.kotlin.clean.ficiverson.presentation.model.SuperHeroeView
 
 /**

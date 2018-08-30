@@ -1,9 +1,8 @@
 package test.kotlin.clean.ficiverson.interactor.heroeslist
 
-import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 import org.assertj.core.api.Assertions.assertThat
-import org.buffer.android.boilerplate.domain.model.SuperHeroe
+import test.kotlin.clean.ficiverson.model.SuperHeroe
 import org.junit.Test
 import test.kotlin.clean.ficiverson.executor.*
 import test.kotlin.clean.ficiverson.repository.SuperHeroesRepositoryContract

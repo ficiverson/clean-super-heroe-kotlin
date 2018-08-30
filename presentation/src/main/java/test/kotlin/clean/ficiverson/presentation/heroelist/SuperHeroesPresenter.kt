@@ -1,6 +1,6 @@
 package test.kotlin.clean.ficiverson.presentation.heroelist
 
-import org.buffer.android.boilerplate.domain.model.SuperHeroe
+import test.kotlin.clean.ficiverson.model.SuperHeroe
 import test.kotlin.clean.ficiverson.executor.*
 import test.kotlin.clean.ficiverson.interactor.heroeslist.GetSuperHeroesUseCase
 import test.kotlin.clean.ficiverson.presentation.BasePresenter
