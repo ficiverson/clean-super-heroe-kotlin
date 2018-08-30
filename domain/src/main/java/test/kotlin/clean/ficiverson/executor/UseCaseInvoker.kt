@@ -10,12 +10,9 @@ import kotlin.coroutines.experimental.coroutineContext
  */
 class UseCaseInvoker : Invoker {
 
+    private val asyncJobs: MutableList<Job> = mutableListOf()
 
-    val asyncJobs: MutableList<Job> = mutableListOf()
-
-    override fun isPendingTask(): Boolean {
-        return asyncJobs.size != 0
-    }
+    override fun isPendingTask(): Boolean = asyncJobs.size != 0
 
     override fun <P, T> execute(
         useCase: UseCase<P, T>,
@@ -60,7 +57,7 @@ class UseCaseInvoker : Invoker {
         return async(block).await()
     }
 
-    //TODO review paraller executions
+    //TODO review parallel executions
     fun <P, T : Any> executeParallel(
         useCases: List<UseCase<P, T>>,
         params: P,
@@ -70,11 +67,11 @@ class UseCaseInvoker : Invoker {
 
         launchAsync {
             try {
-                var results = mutableListOf<Deferred<Result<T>>>()
+                val results = mutableListOf<Deferred<Result<T>>>()
                 for (useCase in useCases) {
                     results.add(async { useCase.run(policy, params) })
                 }
-                var resultsToNofify = mutableListOf<Result<T>>()
+                val resultsToNofify = mutableListOf<Result<T>>()
                 for (result in results) {
                     resultsToNofify.add(result.await())
                 }

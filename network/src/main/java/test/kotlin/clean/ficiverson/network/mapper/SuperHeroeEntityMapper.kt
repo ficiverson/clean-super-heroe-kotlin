@@ -6,10 +6,8 @@ import test.kotlin.clean.ficiverson.network.model.SuperHeroeResponse
 /**
  * Created by f.souto.gonzalez on 24/08/2018.
  */
-open class SuperHeroeEntityMapper : Mapper<SuperHeroeResponse, SuperHeroeEntity> {
+class SuperHeroeEntityMapper : Mapper<SuperHeroeResponse, SuperHeroeEntity> {
 
-    override fun mapFromRemote(type: SuperHeroeResponse): SuperHeroeEntity {
-        return SuperHeroeEntity(type.name, type.title, type.avatar)
-    }
-
+    override fun mapFromRemote(type: SuperHeroeResponse): SuperHeroeEntity =
+        SuperHeroeEntity(type.name, type.realName, type.photo)
 }
