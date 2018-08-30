@@ -23,8 +23,7 @@ class UseCaseInvoker : Invoker {
         launchAsync {
             try {
                 when (policy) {
-                    LocalOnly -> onResult(asyncAwait { useCase.run(LocalOnly, params) })
-                    NetworkOnly -> onResult(asyncAwait { useCase.run(NetworkOnly, params) })
+                    LocalOnly, NetworkOnly -> onResult(asyncAwait { useCase.run(policy, params) })
                     NetworkAndStorage -> {
                         onResult(asyncAwait { useCase.run(LocalOnly, params) })
                         onResult(asyncAwait { useCase.run(NetworkOnly, params) })
@@ -72,18 +71,22 @@ class UseCaseInvoker : Invoker {
         launchAsync {
             try {
                 val results = mutableListOf<Deferred<Result<T>>>()
-                for (useCase in useCases) {
-                    results.add(async { useCase.run(policy, params) })
+                useCases.forEach {
+                    when (policy) {
+                        LocalOnly, NetworkOnly -> results.add(async { it.run(policy, params) })
+                        NetworkAndStorage -> {
+                            results.add(async { it.run(LocalOnly, params) })
+                            results.add(async { it.run(NetworkOnly, params) })
+                        }
+                    }
                 }
-                val resultsToNofify = mutableListOf<Result<T>>()
-                for (result in results) {
-                    resultsToNofify.add(result.await())
+                val resultsToNotify = mutableListOf<Result<T>>()
+                results.forEach {
+                    resultsToNotify.add(it.await())
                 }
-
-                for (result in resultsToNofify) {
-                    onResult(result)
+                resultsToNotify.forEach {
+                    onResult(it)
                 }
-
             } catch (e: Exception) {
                 onResult(Error())
             }
