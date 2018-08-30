@@ -34,4 +34,14 @@ class InvokerTest {
         assertThat(invoker.isPendingTask()).isFalse()
     }
 
+    @Test
+    fun `that we have pending task`() {
+        val invoker = givenAnInvokerAnCancelTasks()
+        val useCase = givenAGenericSuccessResultUseCase()
+        val params = Unit
+
+        invoker.execute(useCase, params, LocalOnly, {})
+        assertThat(invoker.isPendingTask()).isTrue()
+    }
+
 }
