@@ -18,7 +18,7 @@ class SuperHeroesActivity : BaseActivity<SuperHeroesPresenter>(), SuperHeroesVie
 
     override val presenter: SuperHeroesPresenter by injectActivity()
 
-    private val superHeroesAdapter = SuperHeroesAdapter(this@SuperHeroesActivity, presenter::onSuperHeroeClick)
+    private val superHeroesAdapter = SuperHeroesAdapter(this, presenter::onSuperHeroeClick)
 
     companion object {
         fun startActivity(context: Context) {
