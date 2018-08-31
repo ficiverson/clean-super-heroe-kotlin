@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_super_heroe.view.*
+import test.kotlin.clean.ficiverson.cleansh.extensions.setImageUrl
 import test.kotlin.clean.ficiverson.presentation.model.SuperHeroeView
 import kotlin.clean.ficiverson.cleansh.R
 
@@ -45,7 +46,10 @@ class SuperHeroesAdapter(
 
     class SuperHeroesViewHolder(private val item: View) : RecyclerView.ViewHolder(item) {
         fun bind(superHeroe: SuperHeroeView) {
-            item.itemSuperHeroeName.text = superHeroe.name
+            with(superHeroe) {
+                item.itemSuperHeroeName.text = name
+                item.itemSuperHeroeImage.setImageUrl(avatar)
+            }
         }
     }
 }

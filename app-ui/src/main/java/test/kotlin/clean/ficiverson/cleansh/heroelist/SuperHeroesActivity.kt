@@ -8,7 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_super_heroes.*
 import test.kotlin.clean.ficiverson.cleansh.BaseActivity
 import test.kotlin.clean.ficiverson.cleansh.injection.injectActivity
-import test.kotlin.clean.ficiverson.cleansh.utils.showToast
+import test.kotlin.clean.ficiverson.cleansh.extensions.showToast
 import test.kotlin.clean.ficiverson.presentation.heroelist.SuperHeroesPresenter
 import test.kotlin.clean.ficiverson.presentation.heroelist.SuperHeroesViewTranslator
 import test.kotlin.clean.ficiverson.presentation.model.SuperHeroeView

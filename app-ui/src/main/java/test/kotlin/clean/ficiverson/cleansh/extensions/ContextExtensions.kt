@@ -1,4 +1,4 @@
-package test.kotlin.clean.ficiverson.cleansh.utils
+package test.kotlin.clean.ficiverson.cleansh.extensions
 
 import android.content.Context
 import android.widget.Toast
