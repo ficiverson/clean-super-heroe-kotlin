@@ -1,5 +1,7 @@
 package test.kotlin.clean.ficiverson.interactor.heroeslist
 
+import junit.framework.Assert.assertNotNull
+import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.experimental.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
@@ -19,8 +21,8 @@ class InvokerTest {
         val useCase = givenASuccessResult()
         runBlocking {
             val result = useCase.run(LocalOnly, GetHeroeParams(1))
-            assertThat(result).isNotNull()
-            assertThat(result is Success).isTrue()
+            assertNotNull(result)
+            assertTrue(result is Success)
         }
     }
 
@@ -29,8 +31,8 @@ class InvokerTest {
         val useCase = givenAErrorResult()
         runBlocking {
             val result = useCase.run(LocalOnly, GetHeroeParams(1))
-            assertThat(result).isNotNull()
-            assertThat(result is Error).isTrue()
+            assertNotNull(result)
+            assertTrue(result is Error)
         }
     }
 
@@ -39,8 +41,8 @@ class InvokerTest {
         val useCase = givenANetworkErrorResult()
         runBlocking {
             val result = useCase.run(LocalOnly, GetHeroeParams(1))
-            assertThat(result).isNotNull()
-            assertThat(result is NoInternetError).isTrue()
+            assertNotNull(result)
+            assertTrue(result is NoInternetError)
         }
     }
 
@@ -49,8 +51,8 @@ class InvokerTest {
         val useCase = givenANoDataErrorResult()
         runBlocking {
             val result = useCase.run(LocalOnly, GetHeroeParams(1))
-            assertThat(result).isNotNull()
-            assertThat(result is NoData).isTrue()
+            assertNotNull(result)
+            assertTrue(result is NoData)
         }
     }
 
