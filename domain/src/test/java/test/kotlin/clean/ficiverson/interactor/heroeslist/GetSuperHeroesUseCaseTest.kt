@@ -1,9 +1,8 @@
 package test.kotlin.clean.ficiverson.interactor.heroeslist
 
-import junit.framework.Assert.assertNotNull
-import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.experimental.runBlocking
-import org.assertj.core.api.Assertions.assertThat
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import test.kotlin.clean.ficiverson.executor.*
 import test.kotlin.clean.ficiverson.mock.instrumentation.UseCaseInstruments.givenAErrorResult
