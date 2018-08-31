@@ -12,6 +12,6 @@ object RepositoryInstrument {
 
     fun givenARepository(name: String) = object : SuperHeroesRepositoryContract {
         override fun getSuperHeroes(params: GetHeroeParams, policy: CachePolicy): Result<List<SuperHeroe>> =
-            Success<List<SuperHeroe>>(mutableListOf(givenASuperHeroe(name), givenASuperHeroe(name)))
+            Success<List<SuperHeroe>>(mutableListOf(givenASuperHeroe(name), givenASuperHeroe(name), givenASuperHeroe("Manolito")))
     }
 }

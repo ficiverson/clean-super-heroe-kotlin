@@ -19,13 +19,13 @@ class SuperHeroeRobot {
         BaristaEditTextInteractions.writeTo(R.id.loginEmail, password)
     }
 
-    infix fun submit(func: SuperHeroeRobotResult.() -> Unit): SuperHeroeRobotResult {
+    infix fun submit(func: SuperHeroeRobotMainResult.() -> Unit): SuperHeroeRobotMainResult {
         BaristaClickInteractions.clickOn(R.id.loginSubmitButton)
-        return SuperHeroeRobotResult().apply { func() }
+        return SuperHeroeRobotMainResult().apply { func() }
     }
 }
 
-class SuperHeroeRobotResult {
+class SuperHeroeRobotMainResult {
     fun isSuccess() {
         BaristaVisibilityAssertions.assertDisplayed(R.id.superHeroesRecyclerView)
     }

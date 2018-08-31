@@ -9,7 +9,7 @@ import kotlin.coroutines.experimental.coroutineContext
 /**
  * Created by f.souto.gonzalez on 20/08/2018.
  */
-open class UseCaseInvoker(internal val contextProvider : CoroutineContextProvider) : Invoker {
+open class UseCaseInvoker(internal val contextProvider : CoroutineContextProvider = CoroutineContextProvider()) : Invoker {
 
     internal val asyncJobs: MutableList<Job> = mutableListOf()
 

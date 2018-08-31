@@ -21,6 +21,8 @@ import org.koin.standalone.StandAloneContext.loadKoinModules
 import test.kotlin.clean.ficiverson.cache.heroelist.SuperHeroeLocalDataSourceImpl
 import test.kotlin.clean.ficiverson.cleansh.injection.AppModules
 import test.kotlin.clean.ficiverson.cleansh.mock.instrumentation.RepositoryInstrument.givenARepository
+import test.kotlin.clean.ficiverson.cleansh.mock.instrumentation.SuperHeroeRobot
+import test.kotlin.clean.ficiverson.cleansh.mock.instrumentation.SuperHeroeRobotList
 import test.kotlin.clean.ficiverson.data.datasource.heroelist.SuperHeroeLocalDataSource
 import test.kotlin.clean.ficiverson.data.datasource.heroelist.SuperHeroeRemoteDataSource
 import test.kotlin.clean.ficiverson.interactor.heroeslist.GetSuperHeroesUseCase
@@ -57,7 +59,7 @@ class SuperHeroeActivityTest {
 
     @Test
     fun thatCanFetchSuperHeroesFromNetwork() {
-        BaristaRecyclerViewAssertions.assertRecyclerViewItemCount(R.id.superHeroesRecyclerView, 2)
+        BaristaRecyclerViewAssertions.assertRecyclerViewItemCount(R.id.superHeroesRecyclerView, 3)
     }
 
     @Test
@@ -65,6 +67,18 @@ class SuperHeroeActivityTest {
         onView(withId(R.id.superHeroesRecyclerView))
             .check(matches(atRecyclerViewPosition(1, hasDescendant(withText(itemName)))))
     }
+
+    @Test
+    fun thatCanSearchOnThelist() {
+        search {
+            search()
+            searchText("Peter")
+        } hideKeyboard {
+            isSuccess()
+        }
+    }
+
+    private fun search(func: SuperHeroeRobotList.() -> Unit) = SuperHeroeRobotList().apply { func() }
 
     private fun atRecyclerViewPosition(position: Int, itemMatcher: Matcher<View>): Matcher<View> {
         checkNotNull(itemMatcher)
