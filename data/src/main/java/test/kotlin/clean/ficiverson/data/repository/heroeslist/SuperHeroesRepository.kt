@@ -1,6 +1,6 @@
 package test.kotlin.clean.ficiverson.data.repository.heroeslist
 
-import org.buffer.android.boilerplate.domain.model.SuperHeroe
+import test.kotlin.clean.ficiverson.model.SuperHeroe
 import test.kotlin.clean.ficiverson.data.datasource.heroelist.SuperHeroeLocalDataSource
 import test.kotlin.clean.ficiverson.data.datasource.heroelist.SuperHeroeRemoteDataSource
 import test.kotlin.clean.ficiverson.data.mapper.SuperHeroeMapper

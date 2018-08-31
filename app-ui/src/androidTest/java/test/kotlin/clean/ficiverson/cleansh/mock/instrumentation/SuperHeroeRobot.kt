@@ -27,6 +27,6 @@ class SuperHeroeRobot {
 
 class SuperHeroeRobotResult {
     fun isSuccess() {
-        BaristaVisibilityAssertions.assertDisplayed(R.id.superHeroesTitle)
+        BaristaVisibilityAssertions.assertDisplayed(R.id.superHeroesRecyclerView)
     }
 }

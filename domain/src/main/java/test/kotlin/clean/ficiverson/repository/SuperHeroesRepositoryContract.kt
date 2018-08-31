@@ -1,6 +1,6 @@
 package test.kotlin.clean.ficiverson.repository
 
-import org.buffer.android.boilerplate.domain.model.SuperHeroe
+import test.kotlin.clean.ficiverson.model.SuperHeroe
 import test.kotlin.clean.ficiverson.executor.CachePolicy
 import test.kotlin.clean.ficiverson.executor.GetHeroeParams
 import test.kotlin.clean.ficiverson.executor.Result

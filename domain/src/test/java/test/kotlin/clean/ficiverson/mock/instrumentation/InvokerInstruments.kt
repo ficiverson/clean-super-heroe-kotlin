@@ -26,7 +26,7 @@ object InvokerInstruments {
 
     fun givenAnInvokerAnCancelTasks() = object : UseCaseInvoker(TestContextProvider()) {
         override fun <P, T> execute(useCase: UseCase<P, T>, params: P, policy: CachePolicy, onResult: (Result<T>) -> Unit) {
-            asyncJobs.add(launch() {
+            asyncJobs.add(launch {
                 delay(2000)
             })
         }
