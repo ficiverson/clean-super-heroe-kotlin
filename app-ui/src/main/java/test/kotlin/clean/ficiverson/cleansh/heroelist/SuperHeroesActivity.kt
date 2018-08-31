@@ -18,7 +18,7 @@ class SuperHeroesActivity : BaseActivity<SuperHeroesPresenter>(), SuperHeroesVie
 
     override val presenter: SuperHeroesPresenter by injectActivity()
 
-    private val superHeroesAdapter: SuperHeroesAdapter by lazy{
+    private val superHeroesAdapter by lazy{
         SuperHeroesAdapter(this@SuperHeroesActivity, presenter::onSuperHeroeClick)
     }
 
