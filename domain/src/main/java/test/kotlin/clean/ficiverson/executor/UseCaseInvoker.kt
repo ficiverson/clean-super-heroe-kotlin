@@ -3,12 +3,13 @@ package test.kotlin.clean.ficiverson.executor
 //https://medium.com/@andrea.bresolin/playing-with-kotlin-in-android-coroutines-and-how-to-get-rid-of-the-callback-hell-a96e817c108b
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.android.UI
+import kotlin.coroutines.experimental.CoroutineContext
 import kotlin.coroutines.experimental.coroutineContext
 
 /**
  * Created by f.souto.gonzalez on 20/08/2018.
  */
-open class UseCaseInvoker : Invoker {
+open class UseCaseInvoker(internal val contextProvider : CoroutineContextProvider) : Invoker {
 
     internal val asyncJobs: MutableList<Job> = mutableListOf()
 
@@ -47,14 +48,14 @@ open class UseCaseInvoker : Invoker {
     }
 
     private fun launchAsync(block: suspend CoroutineScope.() -> Unit) {
-        val job: Job = launch(UI) { block() }
+        val job: Job = launch(contextProvider.Main) { block() }
         asyncJobs.add(job)
         job.invokeOnCompletion { asyncJobs.remove(job) }
     }
 
 
     private suspend fun <T> async(block: suspend CoroutineScope.() -> T): Deferred<T> {
-        return async(coroutineContext + CommonPool) { block() }
+        return async(coroutineContext + contextProvider.Background) { block() }
     }
 
     private suspend fun <T> asyncAwait(block: suspend CoroutineScope.() -> T): T {
@@ -93,4 +94,9 @@ open class UseCaseInvoker : Invoker {
             }
         }
     }
+}
+
+open class CoroutineContextProvider() {
+    open val Main: CoroutineContext by lazy { UI }
+    open val Background: CoroutineContext by lazy { CommonPool }
 }

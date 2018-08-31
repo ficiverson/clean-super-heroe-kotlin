@@ -1,5 +1,6 @@
 package test.kotlin.clean.ficiverson.cleansh.mock.instrumentation
 
+import com.schibsted.spain.barista.assertion.BaristaAssertions
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions
 import com.schibsted.spain.barista.interaction.BaristaClickInteractions
 import com.schibsted.spain.barista.interaction.BaristaEditTextInteractions
