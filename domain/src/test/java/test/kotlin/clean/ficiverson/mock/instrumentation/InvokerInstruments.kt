@@ -1,11 +1,9 @@
 package test.kotlin.clean.ficiverson.mock.instrumentation
 
-import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 import test.kotlin.clean.ficiverson.executor.*
-import kotlin.coroutines.experimental.coroutineContext
 
 /**
  * Created by f.souto.gonzalez on 30/08/2018.
@@ -23,7 +21,7 @@ object InvokerInstruments {
 
     fun givenAnInvokerAnCancelTasks() = object : UseCaseInvoker() {
         override fun <P, T> execute(useCase: UseCase<P, T>, params: P, policy: CachePolicy, onResult: (Result<T>) -> Unit) {
-            asyncJobs.add(launch() {
+            asyncJobs.add(launch {
                 delay(2000)
             })
         }
