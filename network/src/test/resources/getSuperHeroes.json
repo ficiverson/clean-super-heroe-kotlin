@@ -1,0 +1,58 @@
+{
+  "superheroes": [
+    {
+      "name": "Spiderman",
+      "photo": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/538cd33e15ab7/standard_xlarge.jpg",
+      "realName": "Peter Benjamin Parker",
+      "height": "1.77m",
+      "power": "Peter can cling to most surfaces, has superhuman strength (able to lift 10 tons optimally) and is roughly 15 times more agile than a regular human.",
+      "abilities": "Peter is an accomplished scientist, inventor and photographer.",
+      "groups": "Avengers, formerly the Secret Defenders, \"New Fantastic Four\", the Outlaws"
+    },
+    {
+      "name": "Captain Marvel",
+      "photo": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/537ba5ff07aa4/standard_xlarge.jpg",
+      "realName": "Carol Danvers",
+      "height": "1.80m",
+      "power": "Ms. Marvel's current powers include flight, enhanced strength, durability and the ability to shoot concussive energy bursts from her hands.",
+      "abilities": "Ms. Marvel is a skilled pilot \u0026 hand to hand combatant",
+      "groups": "Avengers, formerly Queen's Vengeance, Starjammers"
+    },
+    {
+      "name": "Hulk",
+      "photo": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0/standard_xlarge.jpg",
+      "realName": "Robert Bruce Banner",
+      "height": "1.75m",
+      "power": "The Hulk possesses an incredible level of superhuman physical ability.",
+      "abilities": "Dr. Bruce Banner is a genius in nuclear physics, possessing a mind so brilliant that it cannot be measured on any known intelligence test. When Banner is the Hulk, Banner's consciousness is buried within the Hulk's, and can influence the Hulk's behavior only to a very limited extent.",
+      "groups": "Formerly Avengers, Defenders, Fantastic Four, Pantheon, Horsemen of Apocalypse, Warbound"
+    },
+    {
+      "name": "Thor",
+      "photo": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/537bc7036ab02/standard_xlarge.jpg",
+      "realName": "Thor Odinson",
+      "height": "1.98m",
+      "power": "As the son of Odin and Gaea, Thor's strength, endurance and resistance to injury are greater than the vast majority of his superhuman race.",
+      "abilities": "Thor is trained in the arts of war, being a superbly skilled warrior, highly proficient in hand-to-hand combat, swordsmanship and hammer throwing.",
+      "groups": "Gods of Asgard, Avengers; formerly Queen’s Vengeance, Godpack, Thor Corps"
+    },
+    {
+      "name": "Iron Man",
+      "photo": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/55b6a25e654e6/standard_xlarge.jpg",
+      "realName": "Anthony Edward \"Tony\" Stark",
+      "height": "1.85m",
+      "power": "None; Tony's body had been enhanced by the modified techno-organic virus, Extremis, but it is currently inaccessible and inoperable.",
+      "abilities": "Tony has a genius level intellect that allows him to invent a wide range of sophisticated devices, specializing in advanced weapons and armor. He possesses a keen business mind.",
+      "groups": "The Avengers, Initiative, Hellfire Club (outer circle), S.H.I.E.L.D., Illuminati, Thunderbolts, Force Works, Queen's Vengeance, Alcoholics Anonymous"
+    },
+    {
+      "name": "Captain America",
+      "photo": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087/standard_xlarge.jpg",
+      "realName": "Steven \"Steve\" Rogers",
+      "height": "1.87m",
+      "power": "The Super-Soldier formula that he had metabolized had enhanced all of his bodily functions to the peak of human efficiency. Most notably, his body eliminates the excessive build-up of fatigue-producing poisons in his muscles, granting him phenomenal endurance.",
+      "abilities": "Captain America had mastered the martial arts of American-style boxing and judo, and had combined these disciplines with his own unique hand-to-hand style of combat.",
+      "groups": "Secret Avengers; formerly the Avengers, Invaders, Captain's Unnamed Superhero Team, Redeemers; formerly partner of Winter Soldier, Bucky, Jones, Rick, Rick Jones, Falcon (Sam Wilson), Falcon, Demolition Man and Nomad (Jack Monroe)"
+    }
+  ]
+}

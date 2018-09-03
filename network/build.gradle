@@ -21,4 +21,5 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.0.0'
+    testImplementation "com.squareup.okhttp3:mockwebserver:${okhttp_version}"
 }
