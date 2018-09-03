@@ -13,7 +13,7 @@ import test.kotlin.clean.ficiverson.mock.instrumentation.UseCaseInstruments.give
 /**
  * Created by f.souto.gonzalez on 27/08/2018.
  */
-class InvokerTest {
+class GetSuperHeroesUseCaseTest {
 
     @Test
     fun `that can invoke a use case with success`() {

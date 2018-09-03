@@ -1,10 +1,10 @@
 package test.kotlin.clean.ficiverson.data.repository.heroeslist
 
-import test.kotlin.clean.ficiverson.model.SuperHeroe
 import test.kotlin.clean.ficiverson.data.datasource.heroelist.SuperHeroeLocalDataSource
 import test.kotlin.clean.ficiverson.data.datasource.heroelist.SuperHeroeRemoteDataSource
 import test.kotlin.clean.ficiverson.data.mapper.SuperHeroeMapper
 import test.kotlin.clean.ficiverson.executor.*
+import test.kotlin.clean.ficiverson.model.SuperHeroe
 import test.kotlin.clean.ficiverson.repository.SuperHeroesRepositoryContract
 import java.io.IOException
 
@@ -12,8 +12,8 @@ import java.io.IOException
  * Created by f.souto.gonzalez on 22/08/2018.
  */
 class SuperHeroesRepository(
-    private val localDataSource: SuperHeroeLocalDataSource,
-    private val networkDataSource: SuperHeroeRemoteDataSource
+    internal val localDataSource: SuperHeroeLocalDataSource,
+    internal val networkDataSource: SuperHeroeRemoteDataSource
 ) : SuperHeroesRepositoryContract {
 
     private val mapper: SuperHeroeMapper = SuperHeroeMapper()
