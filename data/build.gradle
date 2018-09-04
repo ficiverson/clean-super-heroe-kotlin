@@ -10,4 +10,5 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.0.0'
+    implementation 'junit:junit:4.12'
 }

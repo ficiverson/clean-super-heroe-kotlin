@@ -12,5 +12,4 @@ class SuperHeroeIntrument {
         fun givenASuperHeroeEntity() = SuperHeroeEntity("hi", "this", "http://google.com")
         fun givenASuperHeroeRemote() = SuperHeroeResponse("hi", "this", "http://google.com", "height", "power")
     }
-
 }

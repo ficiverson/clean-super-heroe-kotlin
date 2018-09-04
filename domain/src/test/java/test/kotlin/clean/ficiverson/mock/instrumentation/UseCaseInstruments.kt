@@ -11,26 +11,22 @@ import test.kotlin.clean.ficiverson.repository.SuperHeroesRepositoryContract
 object UseCaseInstruments {
 
     fun givenAGenericSuccessResultUseCase() = object : UseCase<Unit, String> {
-        override suspend fun run(policy: CachePolicy, params: Unit): Result<String> = Success("Awesome Result")
+        override suspend fun run(policy: CachePolicy, params: Unit) = Success("Awesome Result")
     }
 
     fun givenASuccessResult() = GetSuperHeroesUseCase(object : SuperHeroesRepositoryContract {
-        override fun getSuperHeroes(params: GetHeroeParams, policy: CachePolicy): Result<List<SuperHeroe>> =
-            Success(emptyList())
+        override fun getSuperHeroes(params: GetHeroeParams, policy: CachePolicy) = Success(emptyList<SuperHeroe>())
     })
 
     fun givenAErrorResult() = GetSuperHeroesUseCase(object : SuperHeroesRepositoryContract {
-        override fun getSuperHeroes(params: GetHeroeParams, policy: CachePolicy): Result<List<SuperHeroe>> =
-            Error()
+        override fun getSuperHeroes(params: GetHeroeParams, policy: CachePolicy) = Error()
     })
 
     fun givenANetworkErrorResult() = GetSuperHeroesUseCase(object : SuperHeroesRepositoryContract {
-        override fun getSuperHeroes(params: GetHeroeParams, policy: CachePolicy): Result<List<SuperHeroe>> =
-            NoInternetError()
+        override fun getSuperHeroes(params: GetHeroeParams, policy: CachePolicy) = NoInternetError()
     })
 
     fun givenANoDataErrorResult() = GetSuperHeroesUseCase(object : SuperHeroesRepositoryContract {
-        override fun getSuperHeroes(params: GetHeroeParams, policy: CachePolicy): Result<List<SuperHeroe>> =
-            NoData()
+        override fun getSuperHeroes(params: GetHeroeParams, policy: CachePolicy) = NoData()
     })
 }

@@ -9,11 +9,11 @@ import java.io.IOException
 object ServerFixtures {
 
     //super heroes getall
-    val HEROES_LIST = "getSuperHeroes.json"
+    const val HEROES_LIST = "getSuperHeroes.json"
 
     @Throws(IOException::class)
     fun enqueueServerFile(server: MockServer, file: String) {
-        server.enqueueFile(200, file)
+        server.enqueueFile(file)
     }
 
     fun enqueueServerError(server: MockServer, code: Int) {

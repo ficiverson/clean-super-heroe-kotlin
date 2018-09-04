@@ -19,8 +19,8 @@ class InvokerTest {
         val useCase = givenAGenericSuccessResultUseCase()
         val params = Unit
         invoker.execute(useCase, params, LocalOnly) {
-            Assertions.assertThat(it is Success).isTrue()
-            Assertions.assertThat((it as Success).data).isEqualTo("Awesome Result")
+            assertThat(it is Success).isTrue()
+            assertThat((it as Success).data).isEqualTo("Awesome Result")
         }
     }
 
@@ -40,7 +40,7 @@ class InvokerTest {
         val invoker = givenAnInvokerAnCancelTasks()
         val useCase = givenAGenericSuccessResultUseCase()
         val params = Unit
-        invoker.execute(useCase, params, LocalOnly, {})
+        invoker.execute(useCase, params, LocalOnly)
         invoker.cancelAllAsync()
         assertThat(invoker.isPendingTask()).isFalse()
     }
@@ -50,7 +50,7 @@ class InvokerTest {
         val invoker = givenAnInvokerAnCancelTasks()
         val useCase = givenAGenericSuccessResultUseCase()
         val params = Unit
-        invoker.execute(useCase, params, LocalOnly, {})
+        invoker.execute(useCase, params, LocalOnly)
         assertThat(invoker.isPendingTask()).isTrue()
     }
 
