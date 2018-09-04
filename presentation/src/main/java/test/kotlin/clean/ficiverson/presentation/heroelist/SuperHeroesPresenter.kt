@@ -14,7 +14,7 @@ import java.lang.ref.WeakReference
 class SuperHeroesPresenter(
     view: SuperHeroesViewTranslator,
     private val getSuperHeroes: GetSuperHeroesUseCase,
-    private val invoker: UseCaseInvoker = UseCaseInvoker(CoroutineContextProvider()),
+    private val invoker: UseCaseInvoker = UseCaseInvoker(),
     private val superHeroeMapper: SuperHeroeMapper = SuperHeroeMapper()
 ) : BasePresenter<SuperHeroesViewTranslator>(WeakReference(view)) {
 

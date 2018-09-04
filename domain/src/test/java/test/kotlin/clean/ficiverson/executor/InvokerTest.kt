@@ -1,6 +1,5 @@
 package test.kotlin.clean.ficiverson.executor
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import test.kotlin.clean.ficiverson.mock.instrumentation.InvokerInstruments

@@ -48,14 +48,14 @@ open class UseCaseInvoker(internal val contextProvider : CoroutineContextProvide
     }
 
     private fun launchAsync(block: suspend CoroutineScope.() -> Unit) {
-        val job: Job = launch(contextProvider.Main) { block() }
+        val job: Job = launch(contextProvider.main) { block() }
         asyncJobs.add(job)
         job.invokeOnCompletion { asyncJobs.remove(job) }
     }
 
 
     private suspend fun <T> async(block: suspend CoroutineScope.() -> T): Deferred<T> {
-        return async(coroutineContext + contextProvider.Background) { block() }
+        return async(coroutineContext + contextProvider.background) { block() }
     }
 
     private suspend fun <T> asyncAwait(block: suspend CoroutineScope.() -> T): T {
@@ -97,6 +97,6 @@ open class UseCaseInvoker(internal val contextProvider : CoroutineContextProvide
 }
 
 open class CoroutineContextProvider {
-    open val Main: CoroutineContext by lazy { UI }
-    open val Background: CoroutineContext by lazy { CommonPool }
+    open val main: CoroutineContext by lazy { UI }
+    open val background: CoroutineContext by lazy { CommonPool }
 }
