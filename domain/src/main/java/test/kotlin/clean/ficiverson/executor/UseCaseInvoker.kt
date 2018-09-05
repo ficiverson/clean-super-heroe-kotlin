@@ -19,19 +19,19 @@ open class UseCaseInvoker(internal val contextProvider : CoroutineContextProvide
         useCase: UseCase<P, T>,
         params: P,
         policy: CachePolicy,
-        onResult: (Result<T>) -> Unit
+        onResult: ((Result<T>) -> Unit)?
     ) {
         launchAsync {
             try {
                 when (policy) {
-                    LocalOnly, NetworkOnly -> onResult(asyncAwait { useCase.run(policy, params) })
+                    LocalOnly, NetworkOnly -> onResult?.invoke(asyncAwait { useCase.run(policy, params) })
                     NetworkAndStorage -> {
-                        onResult(asyncAwait { useCase.run(LocalOnly, params) })
-                        onResult(asyncAwait { useCase.run(NetworkOnly, params) })
+                        onResult?.invoke(asyncAwait { useCase.run(LocalOnly, params) })
+                        onResult?.invoke(asyncAwait { useCase.run(NetworkOnly, params) })
                     }
                 }
             } catch (e: Exception) {
-                onResult(Error())
+                onResult?.invoke(Error())
             }
         }
     }
@@ -48,14 +48,14 @@ open class UseCaseInvoker(internal val contextProvider : CoroutineContextProvide
     }
 
     private fun launchAsync(block: suspend CoroutineScope.() -> Unit) {
-        val job: Job = launch(contextProvider.Main) { block() }
+        val job: Job = launch(contextProvider.main) { block() }
         asyncJobs.add(job)
         job.invokeOnCompletion { asyncJobs.remove(job) }
     }
 
 
     private suspend fun <T> async(block: suspend CoroutineScope.() -> T): Deferred<T> {
-        return async(coroutineContext + contextProvider.Background) { block() }
+        return async(coroutineContext + contextProvider.background) { block() }
     }
 
     private suspend fun <T> asyncAwait(block: suspend CoroutineScope.() -> T): T {
@@ -67,7 +67,7 @@ open class UseCaseInvoker(internal val contextProvider : CoroutineContextProvide
         useCases: List<UseCase<P, T>>,
         params: P,
         policy: CachePolicy,
-        onResult: (Result<T>) -> Unit
+        onResult: ((Result<T>) -> Unit)?
     ) {
 
         launchAsync {
@@ -87,16 +87,16 @@ open class UseCaseInvoker(internal val contextProvider : CoroutineContextProvide
                     resultsToNotify.add(it.await())
                 }
                 resultsToNotify.forEach {
-                    onResult(it)
+                    onResult?.invoke(it)
                 }
             } catch (e: Exception) {
-                onResult(Error())
+                onResult?.invoke(Error())
             }
         }
     }
 }
 
-open class CoroutineContextProvider() {
-    open val Main: CoroutineContext by lazy { UI }
-    open val Background: CoroutineContext by lazy { CommonPool }
+open class CoroutineContextProvider {
+    open val main: CoroutineContext by lazy { UI }
+    open val background: CoroutineContext by lazy { DefaultDispatcher }
 }
