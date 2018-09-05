@@ -98,5 +98,5 @@ open class UseCaseInvoker(internal val contextProvider : CoroutineContextProvide
 
 open class CoroutineContextProvider {
     open val main: CoroutineContext by lazy { UI }
-    open val background: CoroutineContext by lazy { CommonPool }
+    open val background: CoroutineContext by lazy { DefaultDispatcher }
 }

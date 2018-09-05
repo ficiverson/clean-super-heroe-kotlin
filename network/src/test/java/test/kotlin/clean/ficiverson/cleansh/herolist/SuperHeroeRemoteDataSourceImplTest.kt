@@ -6,7 +6,6 @@ import org.junit.Before
 import org.junit.Test
 import org.koin.standalone.StandAloneContext.closeKoin
 import org.koin.standalone.StandAloneContext.startKoin
-import org.koin.test.KoinTest
 import test.kotlin.clean.ficiverson.cleansh.mock.fixtures.ServerFixtures.HEROES_LIST
 import test.kotlin.clean.ficiverson.cleansh.mock.fixtures.ServerFixtures.enqueueServerError
 import test.kotlin.clean.ficiverson.cleansh.mock.fixtures.ServerFixtures.enqueueServerFile
@@ -18,7 +17,7 @@ import test.kotlin.clean.ficiverson.network.injection.NetworkModules
 /**
  * Created by f.souto.gonzalez on 27/08/2018.
  */
-class SuperHeroeRemoteDataSourceImplTest :KoinTest {
+class SuperHeroeRemoteDataSourceImplTest {
 
     lateinit var mockServer: MockServer
 
