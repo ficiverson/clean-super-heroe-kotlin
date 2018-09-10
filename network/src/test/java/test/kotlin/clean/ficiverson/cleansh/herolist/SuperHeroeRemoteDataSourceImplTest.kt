@@ -1,5 +1,6 @@
 package test.kotlin.clean.ficiverson.cleansh.herolist
 
+import com.karumi.kotlinsnapshot.matchWithSnapshot
 import org.assertj.core.api.Assertions
 import org.junit.After
 import org.junit.Before
@@ -38,6 +39,13 @@ class SuperHeroeRemoteDataSourceImplTest {
         enqueueServerFile(mockServer, HEROES_LIST)
         val superHeroeRemoteDataSource = SuperHeroeRemoteDataSourceImpl()
         Assertions.assertThat(superHeroeRemoteDataSource.getAll()?.size).isGreaterThan(0)
+    }
+
+    @Test
+    fun `that we receive at least one superheroe match snapshot`() {
+        enqueueServerFile(mockServer, HEROES_LIST)
+        val superHeroeRemoteDataSource = SuperHeroeRemoteDataSourceImpl()
+        superHeroeRemoteDataSource.getAll()?.matchWithSnapshot("should fetch the data from the network")
     }
 
     @Test(expected = Exception::class)
