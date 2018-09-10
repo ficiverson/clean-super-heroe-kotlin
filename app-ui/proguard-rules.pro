@@ -19,3 +19,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# The Android pre-handler for exceptions is loaded reflectively (via ServiceLoader).
+-keep class kotlinx.coroutines.experimental.android.AndroidExceptionPreHandler { *; }

@@ -2,16 +2,27 @@
 
 buildscript {
     ext {
+        minSdk = 19
+        compileSdk = 27
+        targetSdk = 27
+        versionCode = 1
+        versionName = "1.0.0"
+
+        gradle_version = "3.1.4"
         kotlin_version = '1.2.61'
-        kodein_version = '5.0.0'
+
+        koin_version = '0.9.3'
         coroutines_version = '0.22.5'
+        support_version = "27.1.1"
+        constraint_layout_version = "1.1.2"
         retrofit_version = '2.3.0'
         gson_version = '2.8.2'
         okhttp_version = '3.10.0'
-        picasso_version = '2.71828'
-        espresso_version = '3.0.2'
-        mockito_kotlin = '1.5.0'
+        room_version = '1.0.0'
+        glide_version = '4.8.0'
+        mockito_kotlin_version = '1.5.0'
         mockito_version = '2.8.9'
+        roboelectric_version = '3.8'
     }
 
     repositories {
@@ -19,8 +30,9 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.karumi.kotlinsnapshot:plugin:0.3.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

@@ -3,34 +3,35 @@ package test.kotlin.clean.ficiverson.executor
 //https://medium.com/@andrea.bresolin/playing-with-kotlin-in-android-coroutines-and-how-to-get-rid-of-the-callback-hell-a96e817c108b
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.android.UI
+import kotlin.coroutines.experimental.CoroutineContext
 import kotlin.coroutines.experimental.coroutineContext
 
 /**
  * Created by f.souto.gonzalez on 20/08/2018.
  */
-class UseCaseInvoker : Invoker {
+open class UseCaseInvoker(internal val contextProvider : CoroutineContextProvider = CoroutineContextProvider()) : Invoker {
 
+    internal val asyncJobs: MutableList<Job> = mutableListOf()
 
-    val asyncJobs: MutableList<Job> = mutableListOf()
-
-    override fun isPendingTask(): Boolean {
-        return asyncJobs.size != 0
-    }
+    override fun isPendingTask(): Boolean = asyncJobs.size != 0
 
     override fun <P, T> execute(
         useCase: UseCase<P, T>,
-        params: Params,
+        params: P,
         policy: CachePolicy,
-        onResult: (Result<T>) -> Unit
+        onResult: ((Result<T>) -> Unit)?
     ) {
         launchAsync {
             try {
                 when (policy) {
-                    LocalOnly, NetworkAndStorage -> onResult(asyncAwait { useCase.run(policy, params) })
-                    NetworkOnly, NetworkAndStorage -> onResult(asyncAwait { useCase.run(policy, params) })
+                    LocalOnly, NetworkOnly -> onResult?.invoke(asyncAwait { useCase.run(policy, params) })
+                    NetworkAndStorage -> {
+                        onResult?.invoke(asyncAwait { useCase.run(LocalOnly, params) })
+                        onResult?.invoke(asyncAwait { useCase.run(NetworkOnly, params) })
+                    }
                 }
             } catch (e: Exception) {
-                onResult(Error())
+                onResult?.invoke(Error())
             }
         }
     }
@@ -43,49 +44,59 @@ class UseCaseInvoker : Invoker {
                 asyncJobs[i].cancel()
             }
         }
+        asyncJobs.clear()
     }
 
     private fun launchAsync(block: suspend CoroutineScope.() -> Unit) {
-        val job: Job = launch(UI) { block() }
+        val job: Job = launch(contextProvider.main) { block() }
         asyncJobs.add(job)
         job.invokeOnCompletion { asyncJobs.remove(job) }
     }
 
 
     private suspend fun <T> async(block: suspend CoroutineScope.() -> T): Deferred<T> {
-        return async(coroutineContext + CommonPool) { block() }
+        return async(coroutineContext + contextProvider.background) { block() }
     }
 
     private suspend fun <T> asyncAwait(block: suspend CoroutineScope.() -> T): T {
         return async(block).await()
     }
 
-    //TODO review paraller executions
+    //TODO review parallel executions
     fun <P, T : Any> executeParallel(
         useCases: List<UseCase<P, T>>,
-        params: Params,
+        params: P,
         policy: CachePolicy,
-        onResult: (Result<T>) -> Unit
+        onResult: ((Result<T>) -> Unit)?
     ) {
 
         launchAsync {
             try {
-                var results = mutableListOf<Deferred<Result<T>>>()
-                for (useCase in useCases) {
-                    results.add(async { useCase.run(policy, params) })
+                val results = mutableListOf<Deferred<Result<T>>>()
+                useCases.forEach {
+                    when (policy) {
+                        LocalOnly, NetworkOnly -> results.add(async { it.run(policy, params) })
+                        NetworkAndStorage -> {
+                            results.add(async { it.run(LocalOnly, params) })
+                            results.add(async { it.run(NetworkOnly, params) })
+                        }
+                    }
                 }
-                var resultsToNofify = mutableListOf<Result<T>>()
-                for (result in results) {
-                    resultsToNofify.add(result.await())
+                val resultsToNotify = mutableListOf<Result<T>>()
+                results.forEach {
+                    resultsToNotify.add(it.await())
                 }
-
-                for (result in resultsToNofify) {
-                    onResult(result)
+                resultsToNotify.forEach {
+                    onResult?.invoke(it)
                 }
-
             } catch (e: Exception) {
-                onResult(Error())
+                onResult?.invoke(Error())
             }
         }
     }
+}
+
+open class CoroutineContextProvider {
+    open val main: CoroutineContext by lazy { UI }
+    open val background: CoroutineContext by lazy { DefaultDispatcher }
 }

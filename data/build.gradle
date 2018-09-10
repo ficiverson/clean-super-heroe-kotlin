@@ -1,15 +1,14 @@
-
 apply plugin: 'kotlin'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-configurations.all {
-    resolutionStrategy {
-        force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    }
-}
-
 dependencies {
-    compile project(':domain')
+    implementation project(':domain')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.0.0'
+    implementation 'junit:junit:4.12'
 }

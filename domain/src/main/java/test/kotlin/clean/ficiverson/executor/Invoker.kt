@@ -7,9 +7,9 @@ interface Invoker {
 
     fun <P, T> execute(
         useCase: UseCase<P, T>,
-        params: Params,
+        params: P,
         policy: CachePolicy = LocalOnly,
-        onResult: (Result<T>) -> Unit
+        onResult: ((Result<T>) -> Unit)? = null
     )
 
     fun cancelAllAsync()
