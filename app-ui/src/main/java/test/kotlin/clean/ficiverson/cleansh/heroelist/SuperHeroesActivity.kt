@@ -24,12 +24,6 @@ class SuperHeroesActivity : BaseActivity<SuperHeroesPresenter>(), SuperHeroesVie
 
     private val superHeroesAdapter = SuperHeroesAdapter(this, presenter::onSuperHeroeClick)
 
-    companion object {
-        fun startActivity(context: Context) {
-            context.startActivity(Intent(context, SuperHeroesActivity::class.java))
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_super_heroes)

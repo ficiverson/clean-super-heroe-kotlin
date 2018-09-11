@@ -12,6 +12,7 @@ class MainPresenter(
     }
 }
 
+
 interface MainViewTranslator {
     fun openSuperHeroesScreen()
 }
