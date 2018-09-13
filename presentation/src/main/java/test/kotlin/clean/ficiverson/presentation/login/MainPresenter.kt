@@ -1,5 +1,6 @@
-package test.kotlin.clean.ficiverson.presentation
+package test.kotlin.clean.ficiverson.presentation.login
 
+import test.kotlin.clean.ficiverson.presentation.BasePresenter
 import java.lang.ref.WeakReference
 
 
@@ -10,9 +11,14 @@ class MainPresenter(
     fun onSubmitButtonClick() {
         view()?.openSuperHeroesScreen()
     }
+
+    fun onJumpButtonClick() {
+        view()?.openJumpScreen()
+    }
 }
 
 
 interface MainViewTranslator {
     fun openSuperHeroesScreen()
+    fun openJumpScreen()
 }

@@ -2,7 +2,6 @@ package test.kotlin.clean.ficiverson.cleansh.heroelist
 
 import android.app.SearchManager
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -12,12 +11,14 @@ import kotlinx.android.synthetic.main.activity_super_heroes.*
 import test.kotlin.clean.ficiverson.cleansh.BaseActivity
 import test.kotlin.clean.ficiverson.cleansh.extensions.showToast
 import test.kotlin.clean.ficiverson.cleansh.injection.injectActivity
+import test.kotlin.clean.ficiverson.cleansh.login.MainRouter
+import test.kotlin.clean.ficiverson.cleansh.navigator.AppLink
 import test.kotlin.clean.ficiverson.presentation.heroelist.SuperHeroesPresenter
 import test.kotlin.clean.ficiverson.presentation.heroelist.SuperHeroesViewTranslator
 import test.kotlin.clean.ficiverson.presentation.model.SuperHeroeView
 import kotlin.clean.ficiverson.cleansh.R
 
-
+@AppLink(MainRouter.HEROE_LIST)
 class SuperHeroesActivity : BaseActivity<SuperHeroesPresenter>(), SuperHeroesViewTranslator {
 
     override val presenter: SuperHeroesPresenter by injectActivity()

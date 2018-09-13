@@ -1,15 +1,14 @@
 package test.kotlin.clean.ficiverson.cleansh.login
 
 import android.content.Context
-import android.content.Intent
 import android.support.test.runner.AndroidJUnit4
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RuntimeEnvironment
-import test.kotlin.clean.ficiverson.cleansh.heroelist.SuperHeroesActivity
-import java.lang.ref.WeakReference
+import test.kotlin.clean.ficiverson.cleansh.navigator.IntentData.Companion.BASE_ROUTE_APP
+import test.kotlin.clean.ficiverson.cleansh.navigator.NoParams
 
 
 /**
@@ -27,7 +26,7 @@ class MainRouterTest {
 
     @Test
     fun `that can calculate next screen`() {
-        val intent = MainRouter(WeakReference(mockContext)).intentData()
-        Assert.assertEquals(intent.component.className, Intent(mockContext, SuperHeroesActivity::class.java).component.className)
+        val intents = MainRouter(mockContext).intentData(NoParams(), MainRouter.HEROE_LIST)
+        Assert.assertEquals(intents!![0].data.toString(), BASE_ROUTE_APP + MainRouter.HEROE_LIST)
     }
 }

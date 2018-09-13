@@ -13,6 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity
+            android:name="test.kotlin.clean.ficiverson.cleansh.navigator.DeepLinkActivity"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="heroes" />
+            </intent-filter>
+        </activity>
+
         <activity android:name="test.kotlin.clean.ficiverson.cleansh.login.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,5 +43,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
+        <activity android:name="test.kotlin.clean.ficiverson.cleansh.jump.JumpActivity"></activity>
+
     </application>
 </manifest>

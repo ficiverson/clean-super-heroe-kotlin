@@ -15,15 +15,15 @@ class HeroesApplication : Application() {
     }
 
     private fun initKoinModules() {
-        val appModules = AppModules()
         val networkModules = NetworkModules("https://api.myjson.com/")
         val localStorageModules = LocalStorageModules(this)
 
         startKoin(
             this,
             listOf(
-                appModules.mainModule,
-                appModules.superHeroesModule,
+                AppModules.mainModule,
+                AppModules.jumpModule,
+                AppModules.superHeroesModule,
                 networkModules.module,
                 localStorageModules.module
             )
