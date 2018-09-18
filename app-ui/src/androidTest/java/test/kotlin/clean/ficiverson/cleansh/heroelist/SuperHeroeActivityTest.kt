@@ -15,13 +15,12 @@ import org.junit.After
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.koin.dsl.module.applicationContext
-import org.koin.standalone.StandAloneContext.closeKoin
+import org.koin.dsl.module.module
 import org.koin.standalone.StandAloneContext.loadKoinModules
+import org.koin.standalone.StandAloneContext.stopKoin
 import test.kotlin.clean.ficiverson.cache.heroelist.SuperHeroeLocalDataSourceImpl
 import test.kotlin.clean.ficiverson.cleansh.injection.AppModules
 import test.kotlin.clean.ficiverson.cleansh.mock.instrumentation.RepositoryInstrument.givenARepository
-import test.kotlin.clean.ficiverson.cleansh.mock.instrumentation.SuperHeroeRobot
 import test.kotlin.clean.ficiverson.cleansh.mock.instrumentation.SuperHeroeRobotList
 import test.kotlin.clean.ficiverson.data.datasource.heroelist.SuperHeroeLocalDataSource
 import test.kotlin.clean.ficiverson.data.datasource.heroelist.SuperHeroeRemoteDataSource
@@ -41,12 +40,12 @@ class SuperHeroeActivityTest {
         override fun beforeActivityLaunched() {
             super.beforeActivityLaunched()
 
-            val mockedRepositoryModule = applicationContext {
+            val mockedRepositoryModule = module {
                 factory { SuperHeroeRemoteDataSourceImpl() as SuperHeroeRemoteDataSource }
                 factory { SuperHeroeLocalDataSourceImpl() as SuperHeroeLocalDataSource }
                 factory { givenARepository(itemName) }
                 factory { GetSuperHeroesUseCase(get()) }
-                factory { SuperHeroesPresenter(it[AppModules.ACTIVITY_PARAM], get()) }
+                factory { SuperHeroesPresenter(it[0], get()) }
             }
             loadKoinModules(listOf(mockedRepositoryModule))
         }
@@ -54,7 +53,7 @@ class SuperHeroeActivityTest {
 
     @After
     fun after() {
-        closeKoin()
+        stopKoin()
     }
 
     @Test

@@ -24,8 +24,8 @@ class HeroesApplication : Application() {
             listOf(
                 appModules.mainModule,
                 appModules.superHeroesModule,
-                networkModules.module,
-                localStorageModules.module
+                networkModules.networkModule,
+                localStorageModules.localStorageModule
             )
         )
     }

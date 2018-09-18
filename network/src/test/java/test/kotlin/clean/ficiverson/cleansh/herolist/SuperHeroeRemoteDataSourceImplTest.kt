@@ -7,6 +7,7 @@ import org.junit.Before
 import org.junit.Test
 import org.koin.standalone.StandAloneContext.closeKoin
 import org.koin.standalone.StandAloneContext.startKoin
+import org.koin.standalone.StandAloneContext.stopKoin
 import test.kotlin.clean.ficiverson.cleansh.mock.fixtures.ServerFixtures.HEROES_LIST
 import test.kotlin.clean.ficiverson.cleansh.mock.fixtures.ServerFixtures.enqueueServerError
 import test.kotlin.clean.ficiverson.cleansh.mock.fixtures.ServerFixtures.enqueueServerFile
@@ -25,13 +26,13 @@ class SuperHeroeRemoteDataSourceImplTest {
     @Before
     fun before() {
         mockServer = MockServer.create()
-        startKoin(listOf(NetworkModules(mockServer.start()).module))
+        startKoin(listOf(NetworkModules(mockServer.start()).networkModule))
     }
 
     @After
     fun after() {
         mockServer.shutdown()
-        closeKoin()
+        stopKoin()
     }
 
     @Test
