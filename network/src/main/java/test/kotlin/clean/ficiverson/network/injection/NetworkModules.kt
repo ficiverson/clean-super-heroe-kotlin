@@ -2,7 +2,7 @@ package test.kotlin.clean.ficiverson.network.injection
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.dsl.module.applicationContext
+import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import test.kotlin.clean.ficiverson.network.SuperHeroesApi
@@ -14,10 +14,10 @@ class NetworkModules(private val baseUrl: String) {
         private const val OK_HTTP_TIMEOUT = 30L
     }
 
-    val module = applicationContext {
-        bean { okHttpClient() }
-        bean { retrofit(get()) }
-        bean { superHeroesApi(get()) }
+    val networkModule = module {
+        single { okHttpClient() }
+        single { retrofit(get()) }
+        single { superHeroesApi(get()) }
     }
 
     private fun okHttpClient() =
