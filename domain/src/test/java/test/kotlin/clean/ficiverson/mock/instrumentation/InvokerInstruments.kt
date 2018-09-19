@@ -17,15 +17,18 @@ object InvokerInstruments {
     }
 
     fun givenAnInvoker() = object : UseCaseInvoker(TestContextProvider()) {
-        override fun <P, T> execute(useCase: UseCase<P, T>, params: P, policy: CachePolicy, onResult: ((Result<T>) -> Unit)?) {
+        override fun <P, T> execute(vararg useCases: UseCaseExecutor<P, T>, isParallel: Boolean, onResult: ((Result<T>) -> Unit)?) {
             asyncJobs.add(launch(contextProvider.main) {
-                onResult?.invoke(useCase.run(LocalOnly, params))
+                useCases.forEach {
+                    onResult?.invoke(it.executeUseCase())
+                }
             })
+
         }
     }
 
     fun givenAnInvokerAnCancelTasks() = object : UseCaseInvoker(TestContextProvider()) {
-        override fun <P, T> execute(useCase: UseCase<P, T>, params: P, policy: CachePolicy, onResult: ((Result<T>) -> Unit)?) {
+        override fun <P, T> execute(vararg useCases: UseCaseExecutor<P, T>, isParallel: Boolean, onResult: ((Result<T>) -> Unit)?) {
             asyncJobs.add(launch {
                 delay(2000)
             })

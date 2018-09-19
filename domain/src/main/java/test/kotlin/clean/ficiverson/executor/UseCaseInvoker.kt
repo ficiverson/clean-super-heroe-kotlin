@@ -9,25 +9,22 @@ import kotlin.coroutines.experimental.coroutineContext
 /**
  * Created by f.souto.gonzalez on 20/08/2018.
  */
-open class UseCaseInvoker(internal val contextProvider : CoroutineContextProvider = CoroutineContextProvider()) : Invoker {
+open class UseCaseInvoker(internal val contextProvider: CoroutineContextProvider = CoroutineContextProvider()) : Invoker {
 
     internal val asyncJobs: MutableList<Job> = mutableListOf()
 
     override fun isPendingTask(): Boolean = asyncJobs.size != 0
 
     override fun <P, T> execute(
-        useCase: UseCase<P, T>,
-        params: P,
-        policy: CachePolicy,
+        vararg useCases: UseCaseExecutor<P, T>,
+        isParallel: Boolean,
         onResult: ((Result<T>) -> Unit)?
     ) {
         launchAsync {
             try {
-                when (policy) {
-                    LocalOnly, NetworkOnly -> onResult?.invoke(asyncAwait { useCase.run(policy, params) })
-                    NetworkAndStorage -> {
-                        onResult?.invoke(asyncAwait { useCase.run(LocalOnly, params) })
-                        onResult?.invoke(asyncAwait { useCase.run(NetworkOnly, params) })
+                executeList(*useCases, isParallel = isParallel).run {
+                    forEach {
+                        onResult?.invoke(it)
                     }
                 }
             } catch (e: Exception) {
@@ -50,50 +47,49 @@ open class UseCaseInvoker(internal val contextProvider : CoroutineContextProvide
     private fun launchAsync(block: suspend CoroutineScope.() -> Unit) {
         val job: Job = launch(contextProvider.main) { block() }
         asyncJobs.add(job)
-        job.invokeOnCompletion { asyncJobs.remove(job) }
-    }
-
-
-    private suspend fun <T> async(block: suspend CoroutineScope.() -> T): Deferred<T> {
-        return async(coroutineContext + contextProvider.background) { block() }
-    }
-
-    private suspend fun <T> asyncAwait(block: suspend CoroutineScope.() -> T): T {
-        return async(block).await()
-    }
-
-    //TODO review parallel executions
-    fun <P, T : Any> executeParallel(
-        useCases: List<UseCase<P, T>>,
-        params: P,
-        policy: CachePolicy,
-        onResult: ((Result<T>) -> Unit)?
-    ) {
-
-        launchAsync {
-            try {
-                val results = mutableListOf<Deferred<Result<T>>>()
-                useCases.forEach {
-                    when (policy) {
-                        LocalOnly, NetworkOnly -> results.add(async { it.run(policy, params) })
-                        NetworkAndStorage -> {
-                            results.add(async { it.run(LocalOnly, params) })
-                            results.add(async { it.run(NetworkOnly, params) })
-                        }
-                    }
-                }
-                val resultsToNotify = mutableListOf<Result<T>>()
-                results.forEach {
-                    resultsToNotify.add(it.await())
-                }
-                resultsToNotify.forEach {
-                    onResult?.invoke(it)
-                }
-            } catch (e: Exception) {
-                onResult?.invoke(Error())
+        job.invokeOnCompletion { _ ->
+            job.takeUnless { it.isCancelled }?.run {
+                asyncJobs.remove(this)
             }
         }
     }
+
+
+    private suspend fun <T> async(isParallel: Boolean, block: suspend CoroutineScope.() -> T): Deferred<T> {
+        return async(
+            coroutineContext + contextProvider.background,
+            start = if (isParallel) CoroutineStart.DEFAULT else CoroutineStart.LAZY
+        ) {
+            block()
+        }
+    }
+
+    private suspend fun <P, T> executeList(vararg executorList: UseCaseExecutor<P, T>, isParallel: Boolean): List<Result<T>> {
+        val results = mutableListOf<Deferred<Result<T>>>()
+        executorList.forEach {
+            when (it.policy) {
+                LocalOnly, NetworkOnly -> results.add(async(isParallel, { it.executeUseCase() }))
+                NetworkAndStorage -> {
+                    results.add(async(isParallel, { it.executeUseCase(LocalOnly) }))
+                    results.add(async(isParallel, { it.executeUseCase(NetworkOnly) }))
+                }
+            }
+        }
+
+        return results.map {
+            if (!isParallel) it.start()
+            it.await()
+        }
+    }
+
+}
+
+class UseCaseExecutor<P, T>(
+    private val useCase: UseCase<P, T>,
+    private val params: P,
+    val policy: CachePolicy = NetworkAndStorage
+) {
+    suspend fun executeUseCase(_policy: CachePolicy = policy) = useCase.run(_policy, params)
 }
 
 open class CoroutineContextProvider {

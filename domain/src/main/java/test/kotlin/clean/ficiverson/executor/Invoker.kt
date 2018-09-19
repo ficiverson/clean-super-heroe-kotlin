@@ -6,10 +6,9 @@ package test.kotlin.clean.ficiverson.executor
 interface Invoker {
 
     fun <P, T> execute(
-        useCase: UseCase<P, T>,
-        params: P,
-        policy: CachePolicy = LocalOnly,
-        onResult: ((Result<T>) -> Unit)? = null
+        vararg useCases: UseCaseExecutor<P, T>,
+        isParallel: Boolean = false,
+        onResult: ((Result<T>) -> Unit)?
     )
 
     fun cancelAllAsync()
