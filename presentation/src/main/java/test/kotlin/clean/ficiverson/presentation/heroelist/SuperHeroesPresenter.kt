@@ -21,7 +21,9 @@ class SuperHeroesPresenter(
     override fun onCreate() {
         super.onCreate()
         val params = GetHeroeParams(1)
-        invoker.execute(getSuperHeroes, params, NetworkAndStorage, ::retrieveHeroes)
+        invoker.execute(UseCaseExecutor(getSuperHeroes, params)) {
+            retrieveHeroes(it)
+        }
     }
 
     override fun onStop() {
